@@ -1,0 +1,59 @@
+<head>
+	<script defer src="./dist/index.js"></script>
+  <link blocking rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/ekmas/cs16.css@main/css/cs16.min.css">
+</head>
+<body>
+  <div class="controls">
+    <h1 class="title">
+      <!-- Great Rendering Engine No Shit -->
+      GRENoS
+    </h1>
+    <div class="controls__btn-group">
+      <p class="controls__man">Use keyboard arrows to rotate object</p>
+      <button class="controls__btn controls__up cs-btn">↑</button>
+      <button class="controls__btn controls__down cs-btn">↓</button>
+      <button class="controls__btn controls__right cs-btn">→</button>
+      <button class="controls__btn controls__left cs-btn">←</button>
+    </div>
+  </div>
+	<canvas id="game"></canvas>
+  <style>
+    body {
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .controls {
+      padding: 16px 16px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .title {
+      margin-bottom: 16px;
+    }
+
+    .controls__btn {
+      &:focus-visible {
+        padding: 16px;
+      }
+      padding: 16px;
+    }
+
+    .controls__man {
+      max-width: 40%;
+      margin-right: 8px;
+    }
+
+    .controls__btn-group {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</body>
