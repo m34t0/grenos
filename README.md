@@ -20,3 +20,6 @@ bun run build:watch
 open index.html
 ```
 Or just open the file.
+
+### Deployed at GitHub Pages
+https://m34t0.github.io/grenos/
