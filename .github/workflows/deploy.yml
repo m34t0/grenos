@@ -49,8 +49,8 @@ jobs:
             dist
             index.html
 
-  deploy:
-    name: Deploy on GitHub Pages
+  artifact:
+    name: Upload GitHub Pages artifact
     runs-on: macos-latest
     needs: build
     steps:
@@ -64,3 +64,13 @@ jobs:
         id: deployment
         with:
           path: .
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: macos-latest
+    needs: artifact
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
