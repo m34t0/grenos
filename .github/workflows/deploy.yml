@@ -23,6 +23,7 @@ jobs:
   build:
     name: Build JavaScript bundle
     runs-on: macos-latest
+    needs: prepare
     steps:
       - run: echo "Get bun setup action"
       - uses: oven-sh/setup-bun@v2
