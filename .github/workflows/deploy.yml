@@ -39,7 +39,7 @@ jobs:
         with:
           name: dist
           path: |
-            dist/index.js
+            dist
             index.html
   deploy:
     name: Deploy on GitHub Pages
@@ -51,3 +51,4 @@ jobs:
         with:
           name: dist
       - run: ls -lah
+      - run: ls -lah ./dist
