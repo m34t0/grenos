@@ -9,6 +9,9 @@ jobs:
     name: Prepare to deploy on GitHub Pages
     runs-on: macos-latest
     steps:
+      - run: echo "Get checkout action for $GITHUB_WORKSPACE"
+      - uses: actions/checkout@v6
+      - run: echo "Get bun setup action"
       - uses: oven-sh/setup-bun@v2
       # - run: bun install
       # - run: bun run build
