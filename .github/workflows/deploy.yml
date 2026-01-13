@@ -1,0 +1,11 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    steps:
+      - uses: oven-sh/setup-bun@v2
+      - run: npm install
+      - run: bun run build
