@@ -1,12 +1,20 @@
+name: Deploy to GitHub Pages
 on:
   workflow_dispatch:
   push:
     branches:
       - master
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  prepare:
+    name: Prepare to deploy on GitHub Pages
+    runs-on: macos-latest
     steps:
       - uses: oven-sh/setup-bun@v2
-      - run: bun install
-      - run: bun run build
+      # - run: bun install
+      # - run: bun run build
+  deploy:
+    name: Deploy on GitHub Pages
+    runs-on: macos-latest
+    needs: prepare
+    steps:
+      - run: ls -lah
