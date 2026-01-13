@@ -11,11 +11,28 @@ jobs:
     steps:
       - run: echo "Get checkout action for $GITHUB_WORKSPACE"
       - uses: actions/checkout@v6
+      - run: echo "Get upload artifact action"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: source
+          path: |
+            src/
+            package.json
+            bun.lock
+            tsconfig.json
+  build:
+    name: Build JavaScript bundle
+    runs-on: macos-latest
+    steps:
       - run: echo "Get bun setup action"
       - uses: oven-sh/setup-bun@v2
+      - run: echo "Get download artifact action"
+      - uses: actions/download-artifact@v7
+        with:
+          name: source
+      - run: bun install
+      - run: bun run build
       - run: ls -lah
-      # - run: bun install
-      # - run: bun run build
   deploy:
     name: Deploy on GitHub Pages
     runs-on: macos-latest

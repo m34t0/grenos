@@ -17,6 +17,6 @@ bun run build:watch
 
 ### Run
 ```bash
-open index.html
+open ./src/index.html
 ```
 Or just open the file.
