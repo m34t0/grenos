@@ -17,6 +17,7 @@ jobs:
           name: source
           path: |
             src/
+            index.html
             package.json
             bun.lock
             tsconfig.json
@@ -37,7 +38,9 @@ jobs:
       - uses: actions/upload-artifact@v6
         with:
           name: dist
-          path: dist
+          path: |
+            dist/index.js
+            index.html
   deploy:
     name: Deploy on GitHub Pages
     runs-on: macos-latest
