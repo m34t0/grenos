@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  prepare:
+    name: Prepare to deploy on GitHub Pages
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/upload-artifact@v6
+        with:
+          name: source
+          path: |
+            src/
+            index.html
+            package.json
+            bun.lock
+            tsconfig.json
+
+  build:
+    name: Build JavaScript bundle
+    runs-on: macos-latest
+    needs: prepare
+    steps:
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/download-artifact@v7
+        with:
+          name: source
+      - run: bun install
+      - run: bun run build
+      - uses: actions/upload-artifact@v6
+        with:
+          name: dist
+          path: |
+            dist
+            index.html
+
+  artifact:
+    name: Upload GitHub Pages artifact
+    runs-on: macos-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: dist
+      - run: ls -lah
+      - run: ls -lah ./dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        id: deployment
+        with:
+          path: .
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: macos-latest
+    needs: artifact
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
