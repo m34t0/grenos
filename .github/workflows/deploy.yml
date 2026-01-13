@@ -32,10 +32,18 @@ jobs:
           name: source
       - run: bun install
       - run: bun run build
-      - run: ls -lah
+      - run: echo "Get upload artifact action"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: dist
+          path: dist
   deploy:
     name: Deploy on GitHub Pages
     runs-on: macos-latest
-    needs: prepare
+    needs: build
     steps:
+      - run: echo "Get download artifact action"
+      - uses: actions/download-artifact@v7
+        with:
+          name: dist
       - run: ls -lah
