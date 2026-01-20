@@ -10,4 +10,14 @@ export type Point3D = {
 };
 
 /* Duplicates keydown/keyup event.code values */
-export type ArrowCode = 'ArrowUp' | 'ArrowDown' | 'ArrowRight' | 'ArrowLeft';
+export type ArrowCode =
+	'ArrowUp'
+	| 'ArrowDown'
+	| 'ArrowRight'
+	| 'ArrowLeft'
+	| 'KeyW'
+	| 'KeyS'
+	| 'KeyD'
+	| 'KeyA'
+	| 'BracketLeft'
+	| 'BracketRight';

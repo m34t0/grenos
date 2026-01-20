@@ -1,6 +1,17 @@
-import { BACKGROUND, FOREGROUND } from './constants';
+import {
+	BACKGROUND,
+	FOREGROUND,
+} from './constants';
 
 import type { Point, Point3D } from './types';
+
+/*
+ * These functions work with
+ * html canvas element so keep in mind
+ * that the 0 point of it is in
+ * top left corner
+ *  _________________________________________________
+ */
 
 function draw_point({ x, y }: Point, ctx: CanvasRenderingContext2D) {
 	const s = 5;

@@ -12,9 +12,21 @@
     <div class="controls__btn-group">
       <p class="controls__man">Use keyboard arrows to rotate object</p>
       <button class="controls__btn controls__up cs-btn">↑</button>
+      <button class="controls__btn controls__left cs-btn">←</button>
       <button class="controls__btn controls__down cs-btn">↓</button>
       <button class="controls__btn controls__right cs-btn">→</button>
-      <button class="controls__btn controls__left cs-btn">←</button>
+    </div>
+    <div class="controls__btn-group">
+      <p class="controls__man">Use WASD to move object</p>
+      <button class="controls__btn controls__W cs-btn">W</button>
+      <button class="controls__btn controls__A cs-btn">A</button>
+      <button class="controls__btn controls__S cs-btn">S</button>
+      <button class="controls__btn controls__D cs-btn">D</button>
+    </div>
+    <div class="controls__btn-group">
+      <p class="controls__man">Use [ or ] to move object closer or further</p>
+      <button class="controls__btn controls__left-bracket cs-btn">[</button>
+      <button class="controls__btn controls__right-bracket cs-btn">]</button>
     </div>
   </div>
 	<canvas id="game"></canvas>
@@ -41,7 +53,7 @@
     }
 
     .controls__btn {
-      width: 20%;
+      flex: 15%;
       padding: 16px;
       &:focus-visible {
         padding: 16px;
@@ -49,14 +61,17 @@
     }
 
     .controls__man {
-      max-width: 40%;
+      flex: 40% 0 0;
       margin-right: 8px;
     }
 
     .controls__btn-group {
-      max-height: 50px;
       display: flex;
       justify-content: space-between;
+    }
+
+    .controls__btn-group:not(:first-child) {
+      margin-top: 16px;
     }
   </style>
 </body>
