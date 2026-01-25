@@ -9,8 +9,10 @@ export type Point3D = {
 	z: number;
 };
 
+export type FaceVertices = [Point3D, Point3D, Point3D];
+
 /* Duplicates keydown/keyup event.code values */
-export type ArrowCode =
+export type KeyCode =
 	'ArrowUp'
 	| 'ArrowDown'
 	| 'ArrowRight'
@@ -21,3 +23,5 @@ export type ArrowCode =
 	| 'KeyA'
 	| 'BracketLeft'
 	| 'BracketRight';
+
+export type OneTimeEvent = 'Wireframes';

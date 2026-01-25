@@ -1,4 +1,4 @@
-import type { Point, Point3D } from './types';
+import type { Point, Point3D, FaceVertices } from './types';
 
 /*
  * These functions work with
@@ -46,15 +46,15 @@ export function rotate_around_x({ x, y, z }: Point3D, angle: number, center: Poi
 	};
 }
 
-export function move_along_x({ x, y, z }: Point3D, distance: number) {
+export function move_along_x({ x, y, z }: Point3D, distance: number): Point3D {
 	return {
-		x: x + distance,
+		x: x+distance,
 		y,
 		z,
 	};
 }
 
-export function move_along_y({ x, y, z }: Point3D, distance: number) {
+export function move_along_y({ x, y, z }: Point3D, distance: number): Point3D {
 	return {
 		x,
 		y: y+distance,
@@ -62,10 +62,37 @@ export function move_along_y({ x, y, z }: Point3D, distance: number) {
 	};
 }
 
-export function move_along_z({ x, y, z }: Point3D, distance: number) {
+export function move_along_z({ x, y, z }: Point3D, distance: number): Point3D {
 	return {
 		x,
 		y,
 		z: z+distance,
 	};
+}
+
+export function subtract_vectors(p_0: Point3D, p_1: Point3D): Point3D {
+	return {
+		x: p_0.x - p_1.x,
+		y: p_0.y - p_1.y,
+		z: p_0.z - p_1.z,
+	};
+}
+
+export function multipy_vectors(p_0: Point3D, p_1: Point3D): Point3D {
+	return {
+		x: p_0.y*p_1.z - p_0.z*p_1.y,
+		y: p_0.z*p_1.x - p_0.x*p_1.z,
+		z: p_0.x*p_1.y - p_0.y*p_1.x,
+	};
+}
+
+export function scalar_multiply_vectors(p_0: Point3D, p_1: Point3D): number {
+	return p_0.x*p_1.x + p_0.y*p_1.y + p_0.z*p_1.z;
+}
+
+export function get_face_normal(vertices: FaceVertices): Point3D {
+	return multipy_vectors(
+		subtract_vectors(vertices[1], vertices[0]),
+		subtract_vectors(vertices[2], vertices[0]),
+	);
 }

@@ -45,17 +45,17 @@ export function draw_points(
 }
 
 export function draw_lines(
-	lines_indexes: number[][],
+	faces_vertices: number[][],
 	points: Point3D[],
 	get_2d_point: (p: Point3D) => Point,
 	ctx: CanvasRenderingContext2D,
 ) {
-	for (const indexes of lines_indexes) {
-		const indexes_ln = indexes.length;
+	for (const vertices of faces_vertices) {
+		const ln = vertices.length;
 
-		for (let i = 0; i < indexes_ln; i++) {
-			const p_0 = points[indexes[i]!]!;
-			const p_1 = points[indexes[(i+1) % indexes_ln]!]!;
+		for (let i = 0; i < ln; i++) {
+			const p_0 = points[vertices[i]!]!;
+			const p_1 = points[vertices[(i+1) % ln]!]!;
 
 			draw_line(
 				get_2d_point(p_0),

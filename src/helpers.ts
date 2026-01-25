@@ -1,4 +1,4 @@
-import type { Point, Point3D } from './types';
+import type { Point } from './types';
 
 export function translate({ x, y }: Point, width: number, height: number): Point {
 	/*
